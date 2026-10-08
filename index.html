@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INTERCOLLEGE 2026 | GNIMT</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b0f;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.96);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            z-index: 1000;
+            border-bottom: 1px solid #292929;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00e5ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00e5ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+
+            background:
+                radial-gradient(circle at 50% 0%, #12384a, transparent 45%),
+                #0b0b0f;
+        }
+
+        .hero-content {
+            max-width: 950px;
+        }
+
+        .hero small {
+            color: #00e5ff;
+            letter-spacing: 5px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 10vw, 120px);
+            line-height: 0.9;
+            margin: 25px 0;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: #00e5ff;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #bdbdbd;
+            font-size: 19px;
+        }
+
+        .buttons {
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            margin: 8px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #00e5ff;
+            color: #000;
+        }
+
+        .primary:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .secondary {
+            border: 1px solid #555;
+            color: white;
+        }
+
+        .secondary:hover {
+            border-color: #00e5ff;
+            color: #00e5ff;
+        }
+
+        /* GENERAL */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #999;
+        }
+
+        /* ABOUT */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .event-card {
+            background: #15151c;
+            border: 1px solid #292933;
+            padding: 35px;
+            border-radius: 15px;
+        }
+
+        .event-card div {
+            padding: 18px 0;
+            border-bottom: 1px solid #292933;
+        }
+
+        .event-card div:last-child {
+            border-bottom: none;
+        }
+
+        .event-card strong {
+            color: #00e5ff;
+        }
+
+        /* EVENTS */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #15151c;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #292933;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #00e5ff;
+            box-shadow: 0 10px 35px rgba(0, 229, 255, 0.08);
+        }
+
+        .card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #999;
+        }
+
+        /* SCHEDULE */
+        .schedule {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .schedule-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 25px;
+            padding: 25px;
+            border-left: 2px solid #00e5ff;
+            background: #15151c;
+            margin-bottom: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .time {
+            color: #00e5ff;
+            font-weight: bold;
+        }
+
+        .schedule-item p {
+            color: #999;
+        }
+
+        /* GUESTS */
+        .speakers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .speaker {
+            text-align: center;
+            background: #15151c;
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid #292933;
+            transition: 0.3s;
+        }
+
+        .speaker:hover {
+            transform: translateY(-6px);
+            border-color: #00e5ff;
+        }
+
+        .speaker-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00e5ff, #0066ff);
+            margin: auto auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+        }
+
+        .speaker h3 {
+            font-size: 25px;
+        }
+
+        .speaker p {
+            color: #999;
+        }
+
+        /* REGISTER */
+        .register {
+            text-align: center;
+            background: linear-gradient(135deg, #08232c, #101018);
+            border-top: 1px solid #263d42;
+            border-bottom: 1px solid #263d42;
+        }
+
+        .register h2 {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .register p {
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            background: #070709;
+            color: #777;
+        }
+
+        footer span {
+            color: #00e5ff;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .about,
+            .event-grid,
+            .speakers {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 65px;
+            }
+
+            section {
+                padding: 70px 6%;
+            }
+
+            .schedule-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            GNIMT
+        </div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#guests">Guests</a></li>
+            <li><a href="#register">Register</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <small>GNIMT PRESENTS</small>
+
+            <h1>
+                INTER<br>
+                <span>COLLEGE</span>
+            </h1>
+
+            <p>
+                The ultimate intercollege celebration of talent,
+                creativity, competition and unforgettable memories.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#register" class="btn primary">
+                    REGISTER NOW
+                </a>
+
+                <a href="#events" class="btn secondary">
+                    EXPLORE EVENTS
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="section-title">
+
+            <h2>ABOUT THE EVENT</h2>
+
+            <p>
+                Where colleges come together.
+            </p>
+
+        </div>
+
+
+        <div class="about">
+
+            <div class="about-text">
+
+                <h2>One Stage. Many Colleges.</h2>
+
+                <p>
+                    INTERCOLLEGE 2026 is a grand intercollege event
+                    organized by GNIMT, bringing together talented
+                    students from different colleges.
+                </p>
+
+                <p>
+                    Compete, perform, connect and showcase your talent
+                    while creating memories that will stay with you
+                    long after the event ends.
+                </p>
+
+            </div>
+
+
+            <div class="event-card">
+
+                <div>
+                    <strong>📅 DATE</strong><br>
+                    10 OCT - 13 OCT 2026
+                </div>
+
+                <div>
+                    <strong>📍 VENUE</strong><br>
+                    Seminar Hall
+                </div>
+
+                <div>
+                    <strong>🏫 ORGANIZED BY</strong><br>
+                    GNIMT
+                </div>
+
+                <div>
+                    <strong>🏆 EVENT TYPE</strong><br>
+                    Intercollege Competition
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EVENTS -->
+
+    <section id="events">
+
+        <div class="section-title">
+
+            <h2>EVENTS</h2>
+
+            <p>
+                Compete. Perform. Conquer.
+            </p>
+
+        </div>
+
+
+        <div class="event-grid">
+
+
+            <div class="card">
+
+                <div class="icon">💻</div>
+
+                <h3>Code Combat</h3>
+
+                <p>
+                    Put your programming skills to the ultimate test
+                    and compete against students from different colleges.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🎤</div>
+
+                <h3>Battle of Bands</h3>
+
+                <p>
+                    Bring your music, energy and passion to the stage
+                    and battle for musical supremacy.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">💃</div>
+
+                <h3>Dance Face-Off</h3>
+
+                <p>
+                    Show your moves, own the stage and prove that
+                    your college has the best dancers.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🎨</div>
+
+                <h3>Creative Canvas</h3>
+
+                <p>
+                    Turn your imagination into art and compete with
+                    creative minds from across colleges.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">📸</div>
+
+                <h3>Frame It</h3>
+
+                <p>
+                    Capture powerful moments and showcase your
+                    photography skills.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🧠</div>
+
+                <h3>Brain Battle</h3>
+
+                <p>
+                    Challenge your knowledge, speed and logical thinking
+                    in an intense intercollege quiz.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SCHEDULE -->
+
+    <section id="schedule">
+
+        <div class="section-title">
+
+            <h2>EVENT SCHEDULE</h2>
+
+            <p>
+                Four days of non-stop action.
+            </p>
+
+        </div>
+
+
+        <div class="schedule">
+
+
+            <div class="schedule-item">
+
+                <div class="time">
+                    10 OCT
+                </div>
+
+                <div>
+                    <h3>Opening Ceremony</h3>
+
+                    <p>
+                        Official inauguration of INTERCOLLEGE 2026
+                        followed by introduction of participating colleges.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="schedule-item">
+
+                <div class="time">
+                    11 OCT
+                </div>
+
+                <div>
+                    <h3>Technical Events</h3>
+
+                    <p>
+                        Code Combat, Brain Battle and other technical
+                        competitions.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="schedule-item">
+
+                <div class="time">
+                    12 OCT
+                </div>
+
+                <div>
+                    <h3>Cultural Events</h3>
+
+                    <p>
+                        Dance, music, art and photography competitions.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="schedule-item">
+
+                <div class="time">
+                    13 OCT
+                </div>
+
+                <div>
+                    <h3>Grand Finale</h3>
+
+                    <p>
+                        Final performances, prize distribution and
+                        closing ceremony.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GUESTS -->
+
+    <section id="guests">
+
+        <div class="section-title">
+
+            <h2>SPECIAL GUESTS</h2>
+
+            <p>
+                Meet our special guests.
+            </p>
+
+        </div>
+
+
+        <div class="speakers">
+
+
+            <div class="speaker">
+
+                <div class="speaker-img">
+                    ★
+                </div>
+
+                <h3>Lakki BCA 5</h3>
+
+                <p>
+                    Special Guest
+                </p>
+
+            </div>
+
+
+            <div class="speaker">
+
+                <div class="speaker-img">
+                    ★
+                </div>
+
+                <h3>Jatin BCA 5</h3>
+
+                <p>
+                    Special Guest
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REGISTER -->
+
+    <section class="register" id="register">
+
+        <h2>READY TO COMPETE?</h2>
+
+        <p>
+            Register now and represent your college at INTERCOLLEGE 2026.
+        </p>
+
+        <!-- Replace the link below with your Google Form -->
+
+        <a href="https://forms.google.com/" class="btn primary">
+            REGISTER NOW
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 <span>GNIMT INTERCOLLEGE</span>. All Rights Reserved.
+        </p>
+
+        <p>
+            10 OCT - 13 OCT 2026 • Seminar Hall
+        </p>
+
+    </footer>
+
+</body>
+</html>
